@@ -1,31 +1,22 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Products from './Products';
+import NotFound from './NotFound';
 import './App.css';
 
 export default class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-        pdList: []
+    render(){
+        return(
+            <Switch>
+                <Route exact path='/products' render={() => (
+                    <Products />
+                )}/>
+                <Route render={() => (
+                    <NotFound />
+                )}/>
+            </Switch>
+        )
     }
-}
-componentDidMount(){
-    fetch('/products')
-    .then(res => res.json())
-    .then(data => {
-        this.setState({
-            pdList: data
-        })
-    })
-}
-
-render(){
-    let pd = this.state.pdList.map((el) => <li>{el.id}</li>)
-    return(
-        <div>
-            {pd}
-        </div>
-    )
-}
 }
 
 
