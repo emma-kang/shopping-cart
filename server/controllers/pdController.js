@@ -22,15 +22,15 @@ exports.addProduct = (req, res) => {
 
 exports.findOneProduct = (req, res) => {
     // find one by product Id(not _id)
-    Products.findOne({id: req.params.pdId}, (err, pd) => {
+    Products.findOne({_id: req.params.pdId}, (err, pd) => {
         if(err) res.send(err);
 
         res.json(pd);
     });
 };
 
-exports.updateProduct = () => {
-    Products.findOneAndUpdate({id: req.params.pdId}, req.body, {new:true}, (err, pd) =>{
+exports.updateProduct = (req, res) => {
+    Products.findOneAndUpdate({_id: req.params.pdId}, req.body, {new:true}, (err, pd) =>{
         if(err) res.send(err);
 
         res.json(pd);

@@ -9,10 +9,13 @@ export default class App extends Component {
         return(
             <Switch>
                 <Route exact path='/products' render={() => (
-                    <Products />
+                    <Products title="Products" />
+                )}/>
+                <Route exact path='/admin' render={() => (
+                    <Admin />
                 )}/>
                 <Route render={() => (
-                    <NotFound />
+                    <NotFound title="Not Found" />
                 )}/>
             </Switch>
         )

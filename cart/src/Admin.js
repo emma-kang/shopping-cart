@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
-import Display from './Display';
-import Container from './Container';
+import axios from 'axios';
 
 export default class Products extends Component{
     constructor(props){
         super(props);
         this.state = {
-            pdList: [],
+            pdData: [],
+            pdId: '',
+            pdName: '',
+            pdUrl: '',
+            qty: 0,
+            price: 0,
+            desc: '',
             intervalIsSet: false
         }
+        this.getProductData = this.getProductData.bind(this);
+        this.addProduct = this.addProduct.bind(this);
+        this.updateProduct = this.updateProduct.bind(this);
+        this.delProduct = this.delProduct.bind(this);
     }
 
     // fetch all existing data 
@@ -38,33 +47,24 @@ export default class Products extends Component{
         .then(res => res.json())
         .then(data => {
             this.setState({
-                pdList: data
+                pdData: data
             })
         });
     };
 
+    // add Product data to databasse
+    addProduct = () => {
+
+    }
+    // update Product data to database
+
+    // delete Product data from database
+
     render() {
-        let pd = this.state.pdList.map((el) => {
-            return(
-                <Display id={el.id} name={el.name} price={el.price} />
-            )
-        })
         return (
-            <Container title={this.props.title}>
-                <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Pic</th>
-                        <th scopr="col">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {pd}
-                </tbody>
-                </table>
-            </Container>
+            <div>
+
+            </div>
         )
     }
 }
