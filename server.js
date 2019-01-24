@@ -11,13 +11,13 @@ var bodyParser= require('body-parser');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
-var Products = require('./models/products');
+var Products = require('./server/models/products');
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://kh0626:alclsajdrn0626@ds161794.mlab.com:61794/ecommerce');
 
 // importing route 
-var routers = require('./routes/pdRoutes');
+var routers = require('./server/routes/pdRoutes');
 
 // module providing Connect/Express middleware
 var cors = require('cors'); 
