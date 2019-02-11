@@ -46,24 +46,14 @@ export default class Products extends Component{
     render() {
         let pd = this.state.pdList.map((el) => {
             return(
-                <Display id={el.id} name={el.name} price={el.price} />
+                <Display id={el.id} name={el.name} price={el.price} pic={el.picURL}/>
             )
         })
         return (
             <Container title={this.props.title}>
-                <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Pic</th>
-                        <th scopr="col">Price</th>
-                    </tr>
-                </thead>
-                <tbody>
+                <div className="flex-container">
                     {pd}
-                </tbody>
-                </table>
+                </div>
             </Container>
         )
     }

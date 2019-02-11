@@ -18,6 +18,7 @@ export default class Products extends Component{
         this.addProduct = this.addProduct.bind(this);
         this.updateProduct = this.updateProduct.bind(this);
         this.delProduct = this.delProduct.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     // fetch all existing data 
@@ -41,7 +42,7 @@ export default class Products extends Component{
         }
     }
 
-    // get Data from database 
+    // get all Data from database 
     getProductData = () => {
         fetch('http://localhost:8080/api/products')
         .then(res => res.json())
@@ -54,16 +55,35 @@ export default class Products extends Component{
 
     // add Product data to databasse
     addProduct = () => {
-
+      
     }
     // update Product data to database
+    updateProduct = () => {
 
+    }
     // delete Product data from database
+    delProduct = () => {
+
+    }
 
     render() {
         return (
             <div>
-
+                <form onSubmit={this.handleSubmit}>
+                    Id: 
+                    <input type="text" name="pdId" />
+                    Name: 
+                    <input type="text" name="pdName" />
+                    photo URL:
+                    <input type="text" name="picUrl" />
+                    Qty: 
+                    <input type="number" name="quantity" />
+                    Price: 
+                    <input type="number" name="price" />
+                    Description: 
+                    <input type="text" name="desc" />
+                    <button type="submit">Add</button>
+                </form>
             </div>
         )
     }
