@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server.js",
-    "client": "npm start --prefix cart",
+    "client": "npm start --prefix view",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Yuseon Kang (yuseon1216@gmail.com)",
