@@ -4,6 +4,8 @@
  * Date: 2019-01-19
  */
 
+ 'use strict';
+
 var HTTP_PORT = process.env.PORT || 8080;
 var express = require('express');
 var app = express();
@@ -14,7 +16,8 @@ var mongoose = require('mongoose');
 var Products = require('./models/products');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://kh0626:alclsajdrn0626@ds161794.mlab.com:61794/ecommerce');
+mongoose.connect('mongodb://kh0626:alclsajdrn0626@ds161794.mlab.com:61794/ecommerce', { useNewUrlParser: true});
+mongoose.set('useCreateIndex', true);
 
 // importing route 
 var routers = require('./routes/pdRoutes');

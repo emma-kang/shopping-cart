@@ -1,3 +1,4 @@
+/** Administrator mode page */
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -7,10 +8,6 @@ export default class Admin extends Component{
         this.state = {
             pdData: [],
             objId: '',
-            select: {
-                value: '',
-                target: ''
-            },
             form: {
                 pdId: '',
                 pdName: '',
@@ -23,12 +20,11 @@ export default class Admin extends Component{
         }
 
         this.getProductData = this.getProductData.bind(this);
-        this.findOneProduct = this.findOneProduct.bind(this);
         this.addProduct = this.addProduct.bind(this);
         this.updateProduct = this.updateProduct.bind(this);
         this.delProduct = this.delProduct.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleSelect = this.handleSelect.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     // fetch all existing data 
@@ -63,21 +59,6 @@ export default class Admin extends Component{
         });
     };
 
-    // find one product data from this.state.pdData
-    findOneProduct = () => {
-        const key = this.state.select.value;
-        const value = this.state.select.target;
-        const data = this.state.pdData[key];
-        
-
-        // to prevent case sensitive
-        if(data.toUpperCase() === value.toUpperCase()){
-            
-        }
-    
-
-    } 
-
     // add Product data to databasse
     addProduct = (e) => {
         
@@ -102,13 +83,13 @@ export default class Admin extends Component{
 
     }
     // delete Product data from database
-    delProduct = (objId) => {
+    delProduct = (obj) => {
 
     }
 
     handleChange = (e) => {
         const target = e.target;
-        const name = target.name; // 
+        const name = target.name; 
         const value = target.value;
         
         // ...this.state.form to prevent warning controlled or uncontrolled text input
@@ -120,21 +101,22 @@ export default class Admin extends Component{
         });
     } 
 
-    handleSelect = (e) => {
-        const target = e.target;
-        const name = target.name;
-        const value = target.value;
+    handleClick = (e) => {
+        const obj = e.target.value;
 
         this.setState({
-            select: {
-                ...this.state.select,
-                [name]: value
-            }
+            objId: obj
         })
-    
+
     }
 
     render() {
+        let pdList = this.state.pdData.map((el, index) => {
+            return <div key={index}>Id: {el.id}, name: {el.name} 
+                <span><button className="btn btn-secondary" value={el._id} onClick={this.handleClick}>Select</button></span>
+                <span><button className="btn btn-danger" onClick={() => this.delProduct(el)}>Delete</button></span>
+                </div>
+        });
         return (
             <div className="container">
                 <div className="row">
@@ -170,14 +152,7 @@ export default class Admin extends Component{
                         </form>
                     </div>
                     <div className="col-6">
-                        <input className="search-bar" type="text" name="target" value={this.state.select.target} onChange={this.handleSelect} />
-                        <select value={this.state.select.value} onChange={this.handleSelect}>
-                            <option value="id">Id</option>
-                            <option value="name">Name</option>
-                        </select>
-                        <button onClick={this.findOneProduct}>Search</button>
-                        <button onClick={this.updateProduct}>Update</button>
-                        <button onClick={this.delProduct}>Delete</button>
+                    {pdList}
                     </div>
                 </div>
             </div>
