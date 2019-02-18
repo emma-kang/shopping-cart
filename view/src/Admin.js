@@ -68,7 +68,7 @@ export default class Admin extends Component{
         const key = this.state.select.value;
         const value = this.state.select.target;
         const data = this.state.pdData[key];
-        let result = '';
+        
 
         // to prevent case sensitive
         if(data.toUpperCase() === value.toUpperCase()){
