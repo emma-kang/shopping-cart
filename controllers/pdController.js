@@ -30,11 +30,11 @@ exports.findOneProduct = (req, res) => {
 };
 
 exports.updateProduct = (req, res) => {
-    Products.findOneAndUpdate({_id: req.params.pdId}, req.body, {new:true}, (err, pd) =>{
+    Products.updateOne({_id: req.params.pdId}, req.body, {upsert: true, w: 1}, (err, pd) => {
         if(err) res.send(err);
 
         res.json(pd);
-    });
+    })
 };
 
 exports.deleteProduct = (req, res) => {
