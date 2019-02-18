@@ -15,3 +15,12 @@
     padding-bottom: 1rem;
     margin: 1rem;
 }
+
+/* Admin page btn style */ 
+.btn-container{
+    display: flex;
+    margin-bottom: 1rem;
+}
+.list {
+    width: 200px;
+}

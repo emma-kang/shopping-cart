@@ -142,7 +142,7 @@ export default class Admin extends Component{
 
     render() {
         let pdList = this.state.pdData.map((el, index) => {
-            return <div key={index}><span className="list">ID: {el.id}, Name: {el.name} </span>
+            return <div className="btn-container" key={index}><div className="list">ID: {el.id}, Name: {el.name} </div>
                 <span className="btn-group mx-0"><button className="btn btn-secondary" value={el._id} onClick={this.handleClick}>Select</button>
                 <button className="btn btn-danger" onClick={() => this.delProduct(el._id)}>Delete</button></span>
                 </div>
