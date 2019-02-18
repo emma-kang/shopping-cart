@@ -83,9 +83,13 @@ export default class Admin extends Component{
 
     }
     // delete Product data from database
-    delProduct = (obj) => {
-        axios.delete()
-
+    delProduct = (product) => {
+        axios.delete(`http://localhost:8080/api/products/${product}`)
+        .then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        })
     }
 
     handleChange = (e) => {
@@ -115,7 +119,7 @@ export default class Admin extends Component{
         let pdList = this.state.pdData.map((el, index) => {
             return <div key={index}>Id: {el.id}, name: {el.name} 
                 <span><button className="btn btn-secondary" value={el._id} onClick={this.handleClick}>Select</button></span>
-                <span><button className="btn btn-danger" onClick={() => this.delProduct(el)}>Delete</button></span>
+                <span><button className="btn btn-danger" onClick={() => this.delProduct(el._id)}>Delete</button></span>
                 </div>
         });
         return (
