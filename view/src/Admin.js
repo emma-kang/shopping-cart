@@ -61,7 +61,6 @@ export default class Admin extends Component{
 
     // add Product data to databasse
     addProduct = (e) => {
-        
       axios.post('http://localhost:8080/api/products', {
           id: this.state.form.pdId,
           name: this.state.form.pdName,
@@ -77,7 +76,7 @@ export default class Admin extends Component{
       
       e.preventDefault();
     }
-
+    
     // update Product data to database
     updateProduct = () => {
         // using params as ObjectId of MongoDB 
