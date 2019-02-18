@@ -39,12 +39,11 @@ exports.updateProduct = (req, res) => {
 
 exports.deleteProduct = (req, res) => {
 
-    Products.remove({
+    Products.deleteOne({
         _id: req.params.pdId
     }, (err, pd) => {
         if(err) res.send(err);
-
-        res.json(pd);
+        
         res.json({ message: 'The product successfully deleted'});
     });
 };

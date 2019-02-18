@@ -79,9 +79,10 @@ export default class Admin extends Component{
     }
 
     // update Product data to database
-    updateProduct = (objId) => {
-
+    updateProduct = () => {
+        
     }
+
     // delete Product data from database
     delProduct = (product) => {
         axios.delete(`http://localhost:8080/api/products/${product}`)
@@ -108,10 +109,23 @@ export default class Admin extends Component{
 
     handleClick = (e) => {
         const obj = e.target.value;
+        // find data which is same with object Id
+        let result = this.state.pdData.filter((el) => el._id === obj);
 
+        // set state as the result values 
         this.setState({
-            objId: obj
+                objId: result[0]._id,
+                form: {
+                    pdId: result[0].id,
+                    pdName: result[0].name,
+                    pdUrl: result[0].picURL,
+                    qty: result[0].quantity,
+                    price: result[0].price,
+                    desc: result[0].description
+                }
         })
+
+        console.log(this.state.form.pdId);
 
     }
 
@@ -154,10 +168,11 @@ export default class Admin extends Component{
                                 <input type="text" className="form-control" name="desc" value={this.state.form.desc} onChange={this.handleChange}/>
                             </div>
                             <button className="btn btn-primary" type="submit">Add</button>
+                            <button className="btn btn-info" onClick={this.updateProduct}>Update</button>
                         </form>
                     </div>
                     <div className="col-6">
-                    {pdList}
+                        {pdList}
                     </div>
                 </div>
             </div>
