@@ -143,9 +143,9 @@ export default class Admin extends Component{
 
     render() {
         let pdList = this.state.pdData.map((el, index) => {
-            return <div key={index}>Id: {el.id}, name: {el.name} 
-                <span><button className="btn btn-secondary" value={el._id} onClick={this.handleClick}>Select</button></span>
-                <span><button className="btn btn-danger" onClick={() => this.delProduct(el._id)}>Delete</button></span>
+            return <div key={index}><span className="list">ID: {el.id}, Name: {el.name} </span>
+                <span className="btn-group mx-0"><button className="btn btn-secondary" value={el._id} onClick={this.handleClick}>Select</button>
+                <button className="btn btn-danger" onClick={() => this.delProduct(el._id)}>Delete</button></span>
                 </div>
         });
         return (
@@ -180,7 +180,7 @@ export default class Admin extends Component{
                                 <input type="text" className="form-control" name="desc" value={this.state.form.desc} onChange={this.handleChange}/>
                             </div>
                             <button className="btn btn-primary" type="submit">Add</button>
-                            <button className="btn btn-info" onClick={this.updateProduct}>Update</button>
+                            <button className="btn btn-info ml-2" onClick={this.updateProduct}>Update</button>
                         </form>
                     </div>
                     <div className="col-6">
