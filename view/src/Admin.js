@@ -84,6 +84,7 @@ export default class Admin extends Component{
     }
     // delete Product data from database
     delProduct = (obj) => {
+        axios.delete()
 
     }
 

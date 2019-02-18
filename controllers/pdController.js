@@ -39,7 +39,7 @@ exports.updateProduct = (req, res) => {
 
 exports.deleteProduct = (req, res) => {
     Products.remove({
-        id: req.params.pdId
+        _id: req.params.objId
     }, (err, pd) => {
         if(err) res.send(err);
 
