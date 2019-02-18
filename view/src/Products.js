@@ -7,29 +7,14 @@ export default class Products extends Component{
         super(props);
         this.state = {
             pdList: [],
-            intervalIsSet: false
+            value: '',
         }
+        this.handleChange = this.handleChange.bind(this);
     }
 
     // fetch all existing data 
     componentDidMount() {
         this.getProductData();
-        if(!this.state.intervalIsSet) {
-            let interval = setInterval(this.getProductData, 1000);
-            this.setState({
-                intervalIsSet: interval
-            });
-        }
-    }
-
-    // always kill a process everytime we are done using it 
-    componentWillUnmount() {
-        if(this.state.intervalIsSet){
-            clearInterval(this.state.intervalIsSet);
-            this.setState({
-                intervalIsSet: null
-            });
-        }
     }
 
     // get Data from database 
@@ -43,6 +28,43 @@ export default class Products extends Component{
         });
     };
 
+    // handle sorting the product list 
+    handleChange = (e) => {
+        let sortedData = this.state.pdList;
+
+        // sort by name 
+        if(e.target.value === 'name'){
+            sortedData = sortedData.sort((a, b) => {
+                // ingnore case
+                var nameA = a.name.toUpperCase();
+                var nameB = b.name.toUpperCase();
+
+                if(nameA < nameB) return -1;
+                if(nameA > nameB) return 1;
+
+                return 0;
+            })    
+        }
+        else if(e.target.value === 'low-price'){
+            // sort by low price 
+            sortedData = sortedData.sort((a, b) => {
+                return a.price - b.price;
+            })
+        }
+        else if(e.target.value === 'high-price'){
+            // sort by high price 
+            sortedData = sortedData.sort((a, b) => {
+                return b.price - a.price;
+            })
+        }
+
+        this.setState({
+            pdList: sortedData,
+            value: e.target.value
+        })
+
+    }
+
     render() {
         let pd = this.state.pdList.map((el) => {
             return(
@@ -51,6 +73,15 @@ export default class Products extends Component{
         })
         return (
             <Container title={this.props.title}>
+                <div className="search-bar">
+                    <span>Order By</span>
+                    <select value={this.state.value} onChange={this.handleChange}>
+                        <option value="select">Select</option>
+                        <option value="name">Name</option>
+                        <option value="low-price">Low Price</option>
+                        <option value="high-price">High Price</option>
+                    </select>
+                </div>
                 <div className="flex-container">
                     {pd}
                 </div>
