@@ -30,7 +30,7 @@ exports.findOneProduct = (req, res) => {
 };
 
 exports.updateProduct = (req, res) => {
-    Products.findOneAndUpdate({id: req.params.pdId}, req.body, {new:true}, (err, pd) =>{
+    Products.findOneAndUpdate({_id: req.params.pdId}, req.body, {new:true}, (err, pd) =>{
         if(err) res.send(err);
 
         res.json(pd);
