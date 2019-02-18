@@ -30,7 +30,8 @@ exports.findOneProduct = (req, res) => {
 };
 
 exports.updateProduct = (req, res) => {
-    Products.updateOne({_id: req.params.pdId}, req.body, {upsert: true, w: 1}, (err, pd) => {
+    Products.updateOne({_id: req.params.pdId}, 
+        { "$set": req.body }, {upsert: true, w: 1}, (err, pd) => {
         if(err) res.send(err);
 
         res.json(pd);

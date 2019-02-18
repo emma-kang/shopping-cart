@@ -80,15 +80,14 @@ export default class Admin extends Component{
 
     // update Product data to database
     updateProduct = () => {
+        // using params as ObjectId of MongoDB 
         axios.put(`http://localhost:8080/api/products/${this.state.objId}`, {
-            data: {
                 id: this.state.form.pdId,
                 name: this.state.form.pdName,
                 picURL: this.state.form.pdUrl,
                 quantity: this.state.form.qty,
                 price: this.state.form.price,
                 description: this.state.form.desc
-            }
         }).then((res) => {
             console.log(res);
         }).catch((err) => {
@@ -181,8 +180,8 @@ export default class Admin extends Component{
                                 <input type="text" className="form-control" name="desc" value={this.state.form.desc} onChange={this.handleChange}/>
                             </div>
                             <button className="btn btn-primary" type="submit">Add</button>
+                            <button className="btn btn-info" onClick={this.updateProduct}>Update</button>
                         </form>
-                        <button className="btn btn-info" onClick={this.updateProduct}>Update</button>
                     </div>
                     <div className="col-6">
                         {pdList}
