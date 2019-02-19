@@ -10,7 +10,7 @@
 
 .flex-container > div {
     width: 300px;
-    border: 1px solid red;
+    border: 1px solid grey;
     padding-top: 1rem;
     padding-bottom: 1rem;
     margin: 1rem;
