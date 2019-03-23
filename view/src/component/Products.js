@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Display from './Display';
 import Container from './Container';
 
+// Main Page 
 export default class Products extends Component{
     constructor(props){
         super(props);
