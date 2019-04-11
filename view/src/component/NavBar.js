@@ -9,7 +9,7 @@ export default class NavBar extends Component {
                     <a className="navbar-brand" href="/">{this.props.title}</a>
                     <ul className="nav">
                         <li className="nav-item">
-                            <Link to="/"><i className="fas fa-shopping-cart"></i></Link>
+                            <Link to="/cart"><i className="fas fa-shopping-cart"></i></Link>
                         </li>
                     </ul>
                 </div>

@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { addToCart } from './actions/actions';
 import './App.css';
 
-export default class Display extends Component {
+class Display extends Component {
+    
+    handleClick = (id) => {
+        this.props.addToCart(id);
+    }
     render(){
         return(
             <div className="flex-item">
@@ -10,9 +15,23 @@ export default class Display extends Component {
                 <h4>{this.props.name}</h4>
                 <span>CAD {this.props.price}</span>
                 <div>
-                    <button className="btn btn-primary">Add to Cart</button>
+                    <button className="btn btn-primary" onClick={() => this.handleClick(this.props.id)}>Add</button>
                 </div>
             </div>
         )
     };
 }
+
+const mapStateToProps = (state) => {
+    return {
+        items: state.items
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addToCart: (id) => {dispatch(addToCart(id))}
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Display);
