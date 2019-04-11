@@ -4,6 +4,7 @@ import Products from './Products';
 import Admin from './Admin';
 import NotFound from './NotFound';
 import './App.css';
+import ShoppingCart from './ShoppingCart';
 
 export default class App extends Component {
     render(){
@@ -15,6 +16,9 @@ export default class App extends Component {
                 <Route exact path='/admin' render={() => (
                     <Admin />
                 )}/> 
+                <Route exact path='/cart' render={() => (
+                    <ShoppingCart />
+                )}/>
                 <Route render={() => (
                     <NotFound title="Not Found" />
                 )}/>

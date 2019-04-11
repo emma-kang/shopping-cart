@@ -2,7 +2,7 @@
 // Reducers specify how the application's state changes in response 
 // to actions sent to the store 
 
-import { LOAD_CART, ADD_TO_CART, REMOVE_ITEM } from '../actions/actions';
+import { LOAD_CART, ADD_TO_CART, REMOVE_ITEM } from '../actions/actionType';
 
 const initialState = {
     products: []
